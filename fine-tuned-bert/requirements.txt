@@ -1,0 +1,10 @@
+pandas
+transformers[torch]
+openpyxl
+torch
+accelerate>=0.26.0
+datasets
+scikit-learn
+datetime
+joblib
+numpy

@@ -1,0 +1,23 @@
+services:
+  bert-api:
+    build:
+      context: ./bert-api
+      dockerfile: Dockerfile
+    container_name: bert-api
+    ports:
+      - "5000:5000"
+    restart: always
+    # volumes:
+    #   - ./bert-api/trained-bert:/app/trained-bert  # Mount the trained-bert directory as a volume
+
+  golang-app:
+    build:
+      context: ./golang-app
+      dockerfile: Dockerfile
+    container_name: golang-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - bert-api
+    environment:
+      BERT_API_URL: http://bert-api:5000/bert
